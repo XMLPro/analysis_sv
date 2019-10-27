@@ -1,2 +1,4 @@
-img/*.png
+img/evo/*.png
+img/normal/*.png
+.ipynb_checkpoints/
 !.gitkeep
