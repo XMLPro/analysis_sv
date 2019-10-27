@@ -28,11 +28,14 @@ def get_image():
     print('finished collecting img')
 
 def get_card_info(path='./img/'):
+    # 何ページ目かを示す。
     count = 0
     url = 'https://shadowverse-portal.com/cards?m=index&lang=ja&m=index&card_offset='
+    # pack, skillには現状何も入らない
     info = pd.DataFrame(index=['path', 'type', 'class', 'rarity', 'cv', 'pack', 'skill'])
 
     while True:
+        # 1page 12枚なので
         source = requests.get(url + str(count * 12)).text
 
         soup = bs4.BeautifulSoup(source, 'html.parser')
@@ -54,6 +57,8 @@ def get_card_info(path='./img/'):
                 card_info = card_info.replace('\n', '')
                 card_info = card_info.replace('\r', '')
 
+                # 最悪だけどこうするしかなさそう
+                # 実際ここのせいで、うまく取れない情報が多い
                 if num == 1:
                     info[name]['type'] = card_info
                 if num == 3:
@@ -69,6 +74,8 @@ def get_card_info(path='./img/'):
             img_list = card_soup.select('.card-main-image')
             for i, img in enumerate(img_list):
                 img = img.select('img')
+                # カードの画像の上に名前の画像を載せるという方法を取っているので、
+                # 1つ飛ばして名前の画像は取らないようにしてる。
                 for img_url in img[::2]:
                     img_url = img_url['src']
                     if i == 1:
