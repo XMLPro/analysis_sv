@@ -36,14 +36,26 @@ def get_card_info(path='./img/'):
 
     while True:
         # 1page 12枚なので
-        source = requests.get(url + str(count * 12)).text
+        try:
+            source = requests.get(url + str(count * 12)).text
+        except:
+            print('error')
+            time.sleep(10)
+            source = requests.get(url + str(count * 12)).text
+
 
         soup = bs4.BeautifulSoup(source, 'html.parser')
         cards = soup.select(".el-card-visual-content")
 
         for card in tqdm(cards):
             card_url = f'https://shadowverse-portal.com/{card["href"]}?lang=ja'
-            card_html = requests.get(card_url).text
+            try:
+                card_html = requests.get(card_url).text
+            except:
+                print('error')
+                time.sleep(10)
+                card_html = requests.get(card_url).text
+
             card_soup = bs4.BeautifulSoup(card_html, 'html.parser')
 
             name = card_soup.select_one('.card-main-title').text
@@ -83,7 +95,13 @@ def get_card_info(path='./img/'):
                         name = f'evo_{name}'
                         info[name]['path'] = path + 'evo/' + name + '.png'
                     with open(info[name]['path'], 'wb') as f:
-                        f.write(requests.get(img_url).content)
+                        try:
+                            img_content = requests.get(img_url).content
+                        except:
+                            print('error')
+                            time.sleep(10)
+                            card_html = requests.get(card_url).text
+                        f.write(img_content)
 
                     time.sleep(1)
 
