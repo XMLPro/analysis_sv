@@ -13,6 +13,9 @@ tqdm = "*"
 pandas = "*"
 jupyter = "*"
 jupytext = "*"
+tensorflow = "==1.15.0"
+keras = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.6"
