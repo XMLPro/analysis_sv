@@ -43,9 +43,10 @@ def get_card_info(path='./img/'):
             time.sleep(10)
             source = requests.get(url + str(count * 12)).text
 
-
         soup = bs4.BeautifulSoup(source, 'html.parser')
         cards = soup.select(".el-card-visual-content")
+        if not cards:
+            break
 
         for card in tqdm(cards):
             card_url = f'https://shadowverse-portal.com/{card["href"]}?lang=ja'
