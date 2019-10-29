@@ -1,4 +1,7 @@
 img/evo/*.png
 img/normal/*.png
 .ipynb_checkpoints/
+*.npy
+*.h5
+nohup.out
 !.gitkeep

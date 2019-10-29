@@ -16,6 +16,7 @@ jupytext = "*"
 tensorflow = "==1.15.0"
 keras = "*"
 pillow = "*"
+pydot = "*"
 
 [requires]
-python_version = "3.6"
+python_version = "3.7"
