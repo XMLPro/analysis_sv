@@ -15,6 +15,7 @@ from keras.preprocessing.image import load_img,img_to_array
 from tqdm import tqdm
 
 info = pd.read_pickle('../cards_info.pickle')
+
 img_list = np.load('./img_arr.npy')
 img_list = img_list[:, :, :, :3]
 print(img_list.shape)
