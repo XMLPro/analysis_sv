@@ -45,7 +45,7 @@ print(img_list.shape)
 print(y.shape)
 
 # 学習処理の実行 -> 変数histに進捗の情報が格納される
-hist = model.fit(img_list, y, batch_size=64, verbose=1, epochs=5, validation_split=0.1)
+hist = model.fit(img_list, y, batch_size=32, verbose=1, epochs=5, validation_split=0.1)
 plot_model(model, to_file='rarity_predictor.png', show_shapes=True)
 
-model.save('rarity_predictor.h5')
+model.save('rarity_predictor2.h5')

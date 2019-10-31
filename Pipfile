@@ -17,6 +17,7 @@ tensorflow = "==1.15.0"
 keras = "*"
 pillow = "*"
 pydot = "*"
+sklearn = "*"
 
 [requires]
 python_version = "3.7"
