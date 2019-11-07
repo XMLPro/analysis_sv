@@ -18,6 +18,7 @@ keras = "*"
 pillow = "*"
 pydot = "*"
 sklearn = "*"
+opencv-python = "*"
 
 [requires]
 python_version = "3.7"
