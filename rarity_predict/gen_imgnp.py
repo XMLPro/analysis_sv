@@ -16,7 +16,9 @@ def read_card():
     return img_list
 
 
+# 画像を1/4に縮小
 def resize(img_list=np.load('./img_arr.npy'):
+    # rgba -> rgb
     img_list = img_list[:, :, :, :3]
     img_list2 = []
 
@@ -28,4 +30,7 @@ def resize(img_list=np.load('./img_arr.npy'):
     img_list2 = np.array(img_list2)
     np.save('small_card.npy', img_list2)
 
-resize()
+
+if __name__ == '__main__':
+    read_card()
+    resize()
