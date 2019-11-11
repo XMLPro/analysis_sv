@@ -18,7 +18,6 @@ info = pd.read_pickle('../cards_info.pickle')
 
 img_list = np.load('./img_arr.npy')
 img_list = img_list[:, :, :, :3]
-print(img_list.shape)
 rarity = info[info.index=='rarity'].T
 
 rarity[rarity['rarity'] == 'ブロンズレア'] = 0
@@ -40,7 +39,7 @@ model.add(Dropout(0.5))
 model.add(Dense(4, activation='softmax'))
 
 model.compile(loss='categorical_crossentropy',optimizer='Adam', metrics=['acc'])
-          
+
 print(img_list.shape)
 print(y.shape)
 
