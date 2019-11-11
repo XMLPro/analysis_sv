@@ -3,21 +3,26 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 from tqdm import tqdm
-
 info = pd.read_pickle('../cards_info.pickle')
+
 def read_card():
     img_list = []
 
     for name in tqdm(info):
-        img = plt.imread('../' + info[name]['path'])
+        img = plt.imread('../' + info[name]['path'])[:, :, :3]
+        h = img.shape[0]
+        w = img.shape[1]
+        img = Image.fromarray(np.uint8(img))
+        img = np.asarray(img.resize((h // 4, w // 4)))
         img_list.append(img)
 
     img_list = np.array(img_list)
+    print(img_list.shape)
     return img_list
 
 
 # 画像を1/4に縮小
-def resize(img_list=np.load('./img_arr.npy'):
+def resize(img_list):
     # rgba -> rgb
     img_list = img_list[:, :, :, :3]
     img_list2 = []
@@ -32,5 +37,5 @@ def resize(img_list=np.load('./img_arr.npy'):
 
 
 if __name__ == '__main__':
-    read_card()
-    resize()
+    img_list = read_card()
+    # np.save('small_card.npy', img_list)
