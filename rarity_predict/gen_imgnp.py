@@ -5,7 +5,7 @@ import numpy as np
 from tqdm import tqdm
 info = pd.read_pickle('../cards_info.pickle')
 
-def read_card():
+def convert_np():
     img_list = []
 
     for name in tqdm(info):
@@ -37,5 +37,5 @@ def resize(img_list):
 
 
 if __name__ == '__main__':
-    img_list = read_card()
+    img_list = convert_np()
     # np.save('small_card.npy', img_list)
