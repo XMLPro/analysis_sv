@@ -9,15 +9,15 @@ def read_img(fname):
     w = img.shape[1]
 
     img = Image.fromarray(np.uint8(img))
-    resize_img = np.asarray(img.resize((h // 4, w // 4)))
+    resize_img = np.asarray(img.resize((w // 4, h // 4)))
     img = np.asarray(img)
 
     return resize_img
 
 if __name__ == '__main__':
-    model = load_model('./rarity_predictor2.h5')
+    model = load_model('./rarity_predictor.h5')
     img = read_img('../img/evo/evo_神龍.png')
-    print(img.shape)
+    print(model.summary())
     res = model.predict(np.array([img]))
 
     print(res)
