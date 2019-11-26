@@ -13,7 +13,7 @@ def convert_np():
         h = img.shape[0]
         w = img.shape[1]
         img = Image.fromarray(np.uint8(img))
-        img = np.asarray(img.resize((h // 4, w // 4)))
+        img = np.asarray(img.resize((w // 4, h // 4)))
         img_list.append(img)
 
     img_list = np.array(img_list)
@@ -38,4 +38,4 @@ def resize(img_list):
 
 if __name__ == '__main__':
     img_list = convert_np()
-    # np.save('small_card.npy', img_list)
+    np.save('small_card.npy', img_list)
